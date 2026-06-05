@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Guinea Pig Diary</title>
+  <style>
+    :root {
+      --bg: #F5EFE6;
+      --text: #3D2C29;
+      --accent: #C89B7B;
+      --highlight: #7D9D7B;
+      --muted: #7A6F69;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", "Pretendard", "Apple SD Gothic Neo", sans-serif;
+      line-height: 1.75;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(125, 111, 105, 0.2);
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+    }
+    p, li { font-size: 15px; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 6px 0; }
+    .note {
+      background: rgba(232, 201, 155, 0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    code {
+      background: rgba(125, 111, 105, 0.12);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Consolas", monospace;
+      font-size: 13px;
+    }
+    footer {
+      margin-top: 56px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(125, 111, 105, 0.2);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <div class="subtitle">Guinea Pig Diary (기니피그 다이어리)</div>
+
+    <div class="meta">
+      <div>Effective date: May 29, 2026</div>
+      <div>Last updated: May 29, 2026</div>
+      <div>Version: v1.0</div>
+    </div>
+
+    <p>
+      MSOON ("we", "us", "the company") operates the mobile application
+      <strong>Guinea Pig Diary</strong> ("the app") and is committed to protecting your privacy.
+      This Privacy Policy explains what information the app processes, how it is used,
+      and how it is safeguarded. We comply with the Personal Information Protection Act (Republic of Korea)
+      and other applicable data protection laws.
+    </p>
+
+    <div class="note">
+      🔮 In short — this app <strong>does not send your test responses to any server</strong>.
+      All responses, results, and settings are stored exclusively on your own device,
+      and we cannot directly access or read them.
+    </div>
+
+    <h2>1. Information We Process</h2>
+    <p>The app does not require an account and does not collect personally identifiable information
+    (such as your name or contact details). However, the following data is stored
+    <strong>only on your device</strong>.</p>
+    <ul>
+      <li>Test progress and choice history (guest IDs, accumulated 4-axis scores)</li>
+      <li>Completed test result collection (type, count, completion timestamp)</li>
+      <li>App settings (BGM/SFX volume, typing speed, auto-play speed, language)</li>
+      <li>Consent status for terms, ads, and analytics, with timestamp</li>
+    </ul>
+    <p>This data is kept in your device's <code>localStorage</code> or <code>Capacitor Preferences</code> storage.</p>
+
+    <h2>2. Information Collected Automatically (Ads &amp; Analytics)</h2>
+    <p>If you opt in to ads and analytics, the following may be collected automatically:</p>
+    <ul>
+      <li><strong>Advertising Identifier (AAID/IDFA)</strong> — used by Google AdMob to deliver personalized ads</li>
+      <li><strong>Anonymous usage statistics</strong> — app launch/exit, test start/complete, screen transitions, etc.
+        (individual response content is never collected)</li>
+      <li><strong>Crash logs</strong> — anonymized stack traces in case of unexpected errors</li>
+    </ul>
+    <p>This data is only collected after your explicit consent, and you can withdraw your consent at any time
+    from the in-app settings menu.</p>
+
+    <h2>3. Purposes of Use</h2>
+    <ul>
+      <li>Saving your test progress and supporting the "Resume" feature</li>
+      <li>Displaying your collected results</li>
+      <li>Preserving your personal preferences and settings</li>
+      <li>(With consent) showing ads and analyzing anonymous statistics to improve the service</li>
+      <li>(With consent) diagnosing app errors and improving stability</li>
+    </ul>
+
+    <h2>4. Retention Period</h2>
+    <ul>
+      <li><strong>On-device data</strong>: retained until you uninstall the app or use the "Reset all data"
+        option in settings.</li>
+      <li><strong>Advertising identifier</strong>: governed by your device OS settings. Resetting your
+        advertising ID will replace it with a new value.</li>
+      <li><strong>Anonymous statistics</strong>: anonymized, aggregated data is retained by us for up to 2 years,
+        after which it is permanently discarded.</li>
+    </ul>
+
+    <h2>5. Sharing and Processing by Third Parties</h2>
+    <p>We do not sell or share your personal information with third parties. The following services may operate
+    inside the app, only with your explicit consent:</p>
+    <ul>
+      <li><strong>Google AdMob</strong> — ad delivery (Google LLC, USA).
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+      <li><strong>Google Apps Script (Analytics)</strong> — anonymous usage statistics
+        (operated directly by us)</li>
+    </ul>
+
+    <h2>6. Security Measures</h2>
+    <ul>
+      <li>Local-first design: test responses are never transmitted to any server</li>
+      <li>Anonymous statistics are processed so that individual users cannot be identified</li>
+      <li>Minimum-permission principle: only Internet access is requested. Notification permission is not used in v1.0.</li>
+    </ul>
+
+    <h2>7. Your Rights</h2>
+    <p>You have the following rights regarding all data stored by the app:</p>
+    <ul>
+      <li><strong>Access</strong>: viewable directly via the Collection screen</li>
+      <li><strong>Deletion</strong>: instantly available through "Reset all data" in settings, or by uninstalling the app</li>
+      <li><strong>Withdraw consent</strong>: ads and analytics consent can be withdrawn at any time from the in-app settings</li>
+    </ul>
+
+    <h2>8. Children's Use</h2>
+    <p>The app is intended for users aged 14 and above. If users under 14 use the app, parental consent
+    may be required. We do not knowingly collect personal information from children under 14.</p>
+
+    <h2>9. Disclaimer about Test Reliability</h2>
+    <p>The test results provided by this app are <strong>entertainment content</strong> and are
+    <strong>not the official MBTI® assessment</strong> from The Myers-Briggs Company.
+    They must not be used as the basis for medical or psychological diagnosis.</p>
+
+    <h2>10. Data Protection Officer</h2>
+    <ul>
+      <li>Operator: MSOON Operations Team</li>
+      <li>Contact: <a href="mailto:msoon.kyuwan.kim@gmail.com">msoon.kyuwan.kim@gmail.com</a></li>
+    </ul>
+    <p class="note">※ This email address will be replaced with an operational contact upon official release.</p>
+
+    <h2>11. Dispute Resolution</h2>
+    <p>If you have a dispute regarding your personal information, you may contact the following bodies
+    (Republic of Korea), or your local data protection authority if you reside outside Korea:</p>
+    <ul>
+      <li>Personal Information Dispute Mediation Committee — kopico.go.kr / 1833-6972</li>
+      <li>Personal Information Infringement Report Center — privacy.kisa.or.kr / 118</li>
+      <li>Supreme Prosecutors' Office Cybercrime Investigation Unit — spo.go.kr / 1301</li>
+      <li>National Police Agency Cyber Bureau — ecrm.cyber.go.kr / 182</li>
+    </ul>
+    <p>EU/EEA users may contact their local Data Protection Authority for GDPR-related inquiries.</p>
+
+    <h2>12. Changes to This Policy</h2>
+    <p>If this policy changes, we will provide notice via the in-app announcement or this page
+    at least 7 days before the effective date. For material changes, notice will be provided
+    at least 30 days in advance.</p>
+
+    <footer>
+      © 2026 MSOON. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
