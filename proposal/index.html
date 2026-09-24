@@ -1,0 +1,166 @@
+<title>MSOON 제안서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ink:#131A20; --ink-2:#38474D; --muted:#65767C; --hair:#D5DEDC;
+    --paper:#F1F4F3; --surface:#FFFFFF; --surface-2:#E9EEEC;
+    --lamp:#B2650F; --lamp-bright:#E08B2C; --fluoro:#1F6F6B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans KR","Malgun Gothic",system-ui,sans-serif;
+    font-size:16px; line-height:1.8; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:20px; padding-block:48px 80px}
+
+  .band{background:var(--ink); color:#E4EDEA; margin-bottom:44px}
+  .band-in{max-width:760px; margin:0 auto; padding:11px 20px; font-size:11.5px; letter-spacing:.06em;
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  .band b{color:var(--lamp-bright); font-weight:600}
+
+  h1{font-family:"Gowun Batang",serif; font-size:clamp(30px,6vw,44px); font-weight:700;
+    line-height:1.26; margin:0 0 14px; text-wrap:balance}
+  h2{font-family:"Gowun Batang",serif; font-size:clamp(22px,4.2vw,27px); font-weight:700;
+    line-height:1.34; margin:40px 0 12px; text-wrap:balance}
+  
+  h3{font-size:17px; font-weight:600; margin:32px 0 8px; line-height:1.5}
+  h3:first-child{margin-top:0}
+  h4{font-size:15.5px; font-weight:600; margin:22px 0 6px}
+  p{margin:0 0 15px; max-width:66ch}
+  strong{font-weight:600}
+  em{font-style:normal; color:var(--muted)}
+  a{color:var(--lamp)}
+  ul,ol{margin:0 0 17px; padding-left:1.15em; max-width:66ch}
+  li{margin-bottom:5px}
+  li::marker{color:var(--muted)}
+  code{font-family:"IBM Plex Mono",monospace; font-size:.9em; background:var(--surface-2);
+    padding:2px 5px; border-radius:3px}
+  pre{background:var(--surface-2); border:1px solid var(--hair); border-radius:4px;
+    padding:14px 16px; overflow-x:auto; font-size:13px; line-height:1.7}
+  pre code{background:none; padding:0}
+  hr{border:none; border-top:1px solid var(--hair); margin:34px 0}
+  img{max-width:100%; height:auto; border-radius:4px; display:block}
+
+  blockquote{margin:24px 0; padding:15px 19px; border-left:2px solid var(--lamp-bright);
+    background:var(--surface); border-radius:0 3px 3px 0}
+  blockquote p{margin:0; color:var(--ink-2); font-size:15px}
+  blockquote p + p{margin-top:9px}
+
+  .tw{overflow-x:auto; margin:22px 0; border:1px solid var(--hair); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:14px; min-width:0}
+  th,td{padding:10px 13px; text-align:left; border-bottom:1px solid var(--hair); vertical-align:top}
+  thead th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); font-weight:500; background:var(--surface-2); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td img{border:1px solid var(--hair)}
+  /* 첫 접촉용 — 화면 이미지는 증거이지 주인공이 아니다. 작게 눕힌다 */
+  td img{max-height:270px; width:auto; margin:0 auto}
+  td{text-align:center}
+  .tw:has(img){border:none; background:none}
+  .tw:has(img) td{border-bottom:none; padding:4px 8px}
+
+  
+
+  /* ── 인쇄 도장 — 모든 페이지에 반복된다 ── */
+  .stamp-print{display:none}
+
+  .review{margin:24px 0; padding:18px 20px 6px; background:var(--surface);
+    border:1px solid var(--lamp-bright); border-radius:4px}
+  .review .review-tag{font-size:11.5px; font-weight:600; letter-spacing:.04em; color:var(--lamp); margin:0 0 10px}
+  .review p{font-size:14.5px}
+  .review p:last-child{margin-bottom:12px}
+
+  @media print{
+    :root{--paper:#fff; --surface:#fff; --surface-2:#f4f6f5; --hair:#c9d3d1}
+    body{font-size:10.5pt; line-height:1.6}
+    .wrap{max-width:none; padding:0}
+    .band{margin-bottom:20pt}
+    h2{break-after:avoid; margin-top:22pt}
+    h3,h4{break-after:avoid}
+    .tw,blockquote,.review,pre{break-inside:avoid}
+    a{color:inherit; text-decoration:none}
+    .internal{margin-inline:0; padding-inline:10pt; break-before:page;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact}
+    .internal-stamp{margin-inline:-10pt; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+    .internal h3::before{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+    
+  }
+</style>
+
+
+<div class="wrap">
+<h1>내가 아는 세계에서 받는 검사</h1>
+<h3>MSOON — 브랜드의 세계로 만드는 진단형 비주얼노벨</h3>
+<hr>
+<p>성향 검사의 문항은 대개 추상적입니다. <em>&quot;파티에서 당신은 주로…&quot;</em> 같은 질문에 사람들은 겪은 일이 아니라 상상으로 답합니다. 그래서 중간에 닫습니다.</p>
+<p><strong>저희는 문항을 장면으로 바꿉니다.</strong></p>
+<blockquote>
+<p>자정이 넘은 편의점. 취한 손님이 계산대 앞에서 지갑을 찾다가, 갑자기 오늘 회사에서 있었던 일을 이야기하기 시작합니다.</p>
+<p>① 계산부터 끝내자고 부드럽게 끊는다 ② 일단 끝까지 들어준다 ③ 따뜻한 음료를 하나 권한다</p>
+</blockquote>
+<p>겪어본 일이라 답이 기억에서 나옵니다. 그리고 다음 손님이 궁금해집니다.</p>
+<div class="tw"><table>
+
+<tbody><tr>
+<td><img src="img/app-choice.webp" alt=""></td>
+<td><img src="img/app-result.webp" alt=""></td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2>▶ 2분이면 압니다 — <a href="https://msoonsoft.github.io/demo/midnight-mart/">직접 해보기</a></h2>
+<p><strong>설명을 읽는 것보다 한 번 해보시는 게 빠릅니다.</strong> 손님 넷을 맞고 유형을 받는 데 2분입니다. 그리고 마지막에 <strong>방금 당신이 만들어낸 데이터가 어떤 형태로 남는지</strong> 그대로 보여드립니다.</p>
+<hr>
+<h2>이미 스토어에 있습니다 — 10종</h2>
+<p>성향 비주얼노벨 6종과 캐주얼 게임 4종이 Google Play에 공개돼 있습니다. 전부 눌러보실 수 있습니다.</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.msoon.memorycafe">기억의 카페</a> · <a href="https://play.google.com/store/apps/details?id=com.msoon.midnightmart">자정의 편의점</a> · <a href="https://play.google.com/store/apps/details?id=com.msoon.dusktarot">저물녘의 타로</a> · <a href="https://play.google.com/store/apps/details?id=com.msoon.variousgolfers">이런저런 골퍼</a> · <a href="https://play.google.com/store/apps/details?id=com.msoon.guineapig">기니피그 다이어리</a> · <a href="https://play.google.com/store/apps/details?id=com.msoon.boardgamefesta">보드게임 페스타</a></p>
+<p><strong>여섯 개는 같은 엔진에서 나왔습니다.</strong> 세계관만 다릅니다. 그래서 <strong>새로운 세계 하나를 4주에 만들 수 있습니다.</strong></p>
+<hr>
+<h2>브랜드가 얻는 것</h2>
+<p><strong>① 끝까지 완주되는 진단</strong>
+장면이 궁금해서 다음을 넘깁니다. 문항이 아니라 이야기이기 때문입니다.</p>
+<p><strong>② &quot;왜&quot;가 함께 남는 데이터</strong>
+&quot;산미를 좋아한다&quot;만 남는 게 아니라, <strong>야근 중에는 진한 것을 고르고 주말 오후에는 가벼운 것을 골랐다</strong>는 사실이 장면 단위로 남습니다. 유형은 세그먼트가 되고, 장면별 선택은 <strong>메시지의 근거</strong>가 됩니다.</p>
+<p><strong>③ 소모되지 않는 자산</strong>
+한 번 만든 세계는 시즌마다 손님을 추가해 계속 씁니다. 2회차부터는 엔진·세계관·아트를 그대로 쓰므로 값이 다릅니다.</p>
+<hr>
+<h2>작게 시작하실 수 있습니다</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>파일럿(소규모 시범 프로젝트)</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>범위</td>
+<td>손님 60명 · 8유형</td>
+</tr>
+<tr>
+<td>기간</td>
+<td>4주</td>
+</tr>
+<tr>
+<td>구조</td>
+<td>낮은 제작비 + 전환 수수료</td>
+</tr>
+<tr>
+<td>착수 전 합의</td>
+<td>전환 지표 · 성공 기준</td>
+</tr>
+<tr>
+<td>이후</td>
+<td>수치가 답을 주면 확장</td>
+</tr>
+</tbody></table></div>
+<p><strong>숫자를 보고 결정하시면 됩니다.</strong></p>
+<hr>
+<h2>미리 아셔야 할 것</h2>
+<p>콘텐츠 초안은 생성형 AI로 만들고, <strong>사람이 전량 읽습니다.</strong> 샘플링이 아닙니다.
+소스 코드는 제3 기관에 맡겨두어, 저희가 없어도 운영이 이어집니다.</p>
+<p>두 가지 모두 상세 제안서에 계약 조항까지 적어두었습니다.</p>
+<hr>
+<p><em>상세 제안서와 미팅 자료는 요청하시면 보내드립니다.</em></p>
+<p><strong>MSOON</strong> 〔담당자 · 연락처 — 확정 후 기입〕</p>
+
+</div>
