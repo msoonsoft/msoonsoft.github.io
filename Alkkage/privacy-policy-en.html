@@ -32,7 +32,7 @@
 
   <p>This policy explains what information the mobile game <strong>Alkkagi Master</strong> (the "App"), operated by MSOON (the "Operator"), handles and how it is used and protected.</p>
 
-  <div class="note">In short: there is no sign-up, and the App never asks for your name, phone number, email or precise location. For online matches and the weekly ranking it sends only a random per-device ID, the nickname you choose, and game records. Your saved game is kept on our server briefly only when you use device transfer. Ad-free purchases are processed by Google Play.</div>
+  <div class="note">In short: there is no sign-up, and the App never asks for your name, phone number, email or precise location. For online matches and the weekly ranking it sends only a random per-device ID, the nickname you choose, and game records. Your saved game is kept on our server briefly only when you use device transfer.</div>
 
   <h2>1. Stored only on your device</h2>
   <ul>
@@ -49,18 +49,16 @@
     <tr><td>Nickname (up to 8 characters, chosen by you or generated)</td><td>Online matches, weekly ranking</td><td>Shown to your opponent and on the ranking</td></tr>
     <tr><td>Match board state and moves</td><td>Online matches</td><td>Keeping both devices in sync</td></tr>
     <tr><td>Weekly challenge records (shot replays and score)</td><td>When you enter the weekly ranking</td><td>Ranking, and replaying shots to detect cheating</td></tr>
-    <tr><td>Anonymous usage statistics (screens, game start and result, Ad-free purchase and restore, app version, language)</td><td>Only if you allow analytics</td><td>Improving the game</td></tr>
-    <tr><td>Purchase check records (purchase token, order number, product, items granted) and the random device ID</td><td>When you buy in the shop or restore purchases</td><td>Verifying the purchase, granting items, handling refunds</td></tr>
+    <tr><td>Anonymous usage statistics (screens, game start and result, app version, language)</td><td>Only if you allow analytics</td><td>Improving the game</td></tr>
     <tr><td>Device transfer bundle (your saved game: stage records, points, cosmetics, nickname, settings) and the random device ID</td><td>Only when you create a transfer code</td><td>Moving your progress to a new device</td></tr>
     <tr><td>Anonymous error reports (error type, app version)</td><td>When an error occurs</td><td>App stability</td></tr>
   </table>
-  <p>The server is a Google Apps Script web app with Google Sheets, run by the Operator. All traffic is encrypted with HTTPS.</p>
+  <p>Data sent to our server is stored in Google cloud services (Google LLC) used by the Operator. All traffic is encrypted with HTTPS. See section 7 for storage outside Korea.</p>
 
   <h2>3. Ads and analytics</h2>
   <ul>
     <li><strong>Google AdMob</strong> (Google LLC) may process your advertising ID, device information and approximate location derived from your IP address to show ads. In the EEA and similar regions, Google's consent form asks you first, and you can change it in Settings › Ad privacy.</li>
     <li><strong>Google Analytics for Firebase</strong> (Google LLC) processes anonymous usage statistics only if you allow analytics.</li>
-    <li><strong>Google Play Billing</strong> (Google LLC) processes payment for items in the shop. We never receive your card or other payment details. Before granting an item, our server checks the purchase token and order number with Google Play.</li>
   </ul>
   <p>See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can reset your advertising ID or opt out of personalized ads in your device settings.</p>
 
@@ -80,17 +78,24 @@
     <li>Weekly ranking records (nickname, score, shot replays): kept while the service runs, for ranking and anti-cheat review; deleted promptly on request.</li>
     <li>Anonymous usage statistics and error reports: kept while the service runs; deleted promptly on request.</li>
     <li>Device transfer bundle: deleted as soon as the new device receives it. An unused code stops working after 7 days and is then deleted from our server.</li>
-    <li>Purchase check records (purchase token, order number, product, random device ID): kept while the service runs, to handle refunds and fraud and to restore purchases after reinstalling; deleted promptly on request.</li>
     <li>On-device data: until you uninstall the App.</li>
   </ul>
 
-  <h2>7. Sharing</h2>
+  <h2>7. Sharing and international transfer</h2>
   <p>We do not sell or hand over your data. Apart from the Google services in section 3, nothing is shared. Your nickname is visible only to opponents in matches you start and on the weekly ranking.</p>
+  <p>Our server and the ads and analytics services the App uses are run by Google LLC, so your data may be stored and processed in Google data centers outside Korea.</p>
+  <table>
+    <tr><th>Recipient</th><td>Google LLC (<a href="https://support.google.com/policies/contact/general_privacy_form">Google privacy contact</a>)</td></tr>
+    <tr><th>Countries</th><td>The United States and other countries where Google has data centers</td></tr>
+    <tr><th>Data</th><td>The data in section 2 (random device ID, nickname, match and weekly records, device transfer bundle, anonymous statistics and error reports) and the advertising ID and device information in section 3</td></tr>
+    <tr><th>When and how</th><td>Over the network (HTTPS) when a feature that needs it is used</td></tr>
+    <tr><th>Purpose and retention</th><td>As in sections 2, 3 and 6</td></tr>
+  </table>
+  <p>To avoid this transfer, do not use online matches, the weekly ranking or device transfer, and turn off analytics; those features will then be unavailable. Ads are needed to run the App and are processed while you use it.</p>
 
   <h2>8. Your rights and deletion requests</h2>
   <ul>
     <li>Uninstalling the App deletes all on-device data. Create a device transfer code first if you want to move your progress.</li>
-    <li>If you reinstall after buying the Ad-free Bundle, it comes back when you open the App with the same Google account. You can also use Settings › Ad-free › Restore purchase.</li>
     <li>To delete or correct your nickname or ranking records on our server, email us your nickname and the week(s) you played.</li>
     <li>Report inappropriate nicknames to the same address.</li>
   </ul>
