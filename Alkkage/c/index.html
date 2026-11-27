@@ -2,74 +2,319 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
-  <title>알까기 명인 · 명장면</title>
-  <meta property="og:title" content="알까기 명인 · 명장면 도전">
-  <meta property="og:description" content="친구가 보낸 명장면이에요. 한 번에 따라 할 수 있을까요?">
+  <meta name="theme-color" content="#F4ECDD">
+  <title>알까기 명인 · 명장면 도전</title>
+  <meta property="og:title" content="알까기 명인 · 명장면 도전장">
+  <meta property="og:description" content="친구가 명장면을 보냈어요. 한 번에 따라 할 수 있을까요?">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Gowun+Dodum&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: #F7F1E3; color: #2A2522; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.7; }
-    .c { max-width: 480px; margin: 0 auto; padding: 48px 20px; text-align: center; }
-    h1 { font-size: 22px; margin: 0 0 8px; }
-    p { margin: 6px 0; }
-    .code { font-size: 40px; letter-spacing: 8px; font-weight: 800; margin: 20px 0 6px; padding: 12px 0; border: 2px solid #2A2522; border-radius: 12px; background: #FFFBF2; }
-    .btn { display: block; margin: 14px auto 0; max-width: 320px; padding: 15px 0; border-radius: 12px; font-size: 18px; font-weight: 700; text-decoration: none; border: 2px solid #2A2522; cursor: pointer; }
-    .primary { background: #2A2522; color: #F7F1E3; }
-    .ghost { background: transparent; color: #2A2522; }
-    .muted { color: #7A6F66; font-size: 14px; margin-top: 18px; }
-    .seal { display: inline-block; color: #F7F1E3; background: #C0392B; border-radius: 6px; padding: 2px 8px; font-size: 13px; font-weight: 700; }
-    #copied { visibility: hidden; color: #C0392B; font-size: 14px; }
+    /* 명장면 링크 안내 페이지 (docs/CLIP_SOCIAL_DESIGN.md 3-2). 서버를 부르지 않는다: 코드만 보여 주고 앱 열기·스토어로 보낸다. 앱과 같은 한지·먹·낙관 톤. */
+    :root {
+      --hanji: #F4ECDD; --paper: #FBF6EC; --paper-2: #F7EFE0; --ink: #2A2522; --ink-2: #4A413B; --muted: #8A7E73;
+      --line: rgba(42, 37, 34, 0.14); --seal: #B8322A; --seal-2: #9E2A23; --gold: #B08A4A;
+      --r-lg: 22px; --r-md: 14px; --shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 18px 40px -18px rgba(60, 40, 20, .35), 0 2px 6px rgba(60, 40, 20, .08);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      min-height: 100vh; min-height: 100dvh; color: var(--ink); -webkit-font-smoothing: antialiased;
+      font-family: "Gowun Dodum", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% -200px, #FFF9EE 0%, rgba(255,249,238,0) 70%),
+        repeating-linear-gradient(93deg, rgba(120, 90, 50, .025) 0 2px, transparent 2px 7px),
+        var(--hanji);
+      display: flex; justify-content: center; align-items: flex-start;
+      padding: max(28px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+    }
+    .wrap { width: 100%; max-width: 420px; display: grid; gap: 18px; }
+    .wrap > * { min-width: 0; }
+    .desk .wrap { max-width: 880px; grid-template-columns: 420px 1fr; align-items: start; gap: 28px; }
+
+    /* 머리: 붓글씨 이름 + 낙관 */
+    .brand { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .brand .name { font-family: "Nanum Brush Script", cursive; font-size: 40px; line-height: 1; letter-spacing: 1px; }
+    .seal {
+      width: 26px; height: 26px; border-radius: 5px; background: var(--seal); color: #FFF4EA; display: grid; place-items: center;
+      font: 700 11px/1 "Noto Sans KR", sans-serif; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px rgba(255,255,255,.18);
+    }
+
+    /* 카드 */
+    .card { background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow); overflow: hidden; }
+    .hero { position: relative; padding: 22px 22px 0; text-align: center; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: rgba(184, 50, 42, .09); color: var(--seal); font: 700 12px/1 "Noto Sans KR", sans-serif; letter-spacing: .5px; }
+    .tag i { width: 6px; height: 6px; border-radius: 50%; background: var(--seal); }
+    h1 { margin: 12px 0 6px; font: 900 24px/1.3 "Noto Sans KR", sans-serif; letter-spacing: -.5px; word-break: keep-all; }
+    .lead { margin: 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.55; word-break: keep-all; }
+
+    /* 판 그림 */
+    .board { display: block; width: 100%; max-width: 300px; margin: 18px auto 0; height: auto; }
+    @media (prefers-reduced-motion: no-preference) {
+      .board .shot { animation: flick 2.8s cubic-bezier(.2,.7,.2,1) infinite; }
+      .board .hit { animation: knock 2.8s cubic-bezier(.3,.6,.2,1) infinite; }
+      .board .trail { stroke-dasharray: 4 6; animation: dash 2.8s linear infinite; }
+      @keyframes flick { 0%, 18% { transform: translate(0, 0); } 46% { transform: translate(-6px, -98px); } 100% { transform: translate(-6px, -98px); } }
+      @keyframes knock { 0%, 44% { transform: translate(0, 0); opacity: 1; } 80% { transform: translate(-22px, -64px); opacity: 0; } 100% { opacity: 0; } }
+      @keyframes dash { to { stroke-dashoffset: -40; } }
+    }
+
+    /* 코드 */
+    .codebox { margin: 20px 18px 0; padding: 16px 14px 14px; border-radius: var(--r-md); background: #FFFDF8; border: 1px solid var(--line); text-align: center; }
+    .codebox .label { font: 700 12px/1 "Noto Sans KR", sans-serif; color: var(--muted); letter-spacing: 1px; }
+    .tiles { display: flex; justify-content: center; gap: 6px; margin: 12px 0 12px; }
+    .tiles span {
+      flex: 1 1 0; max-width: 46px; min-width: 0; aspect-ratio: 44 / 54; display: grid; place-items: center; border-radius: 10px; background: var(--paper);
+      border: 1.5px solid rgba(42,37,34,.22); box-shadow: 0 2px 0 rgba(42,37,34,.12);
+      font: 900 26px/1 "Noto Sans KR", sans-serif; color: var(--ink); font-variant-numeric: tabular-nums;
+    }
+    .copy {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px;
+      border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font: 700 15px/1 "Noto Sans KR", sans-serif; cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .copy:hover { background: rgba(42,37,34,.06); }
+    .copy.done { background: var(--ink); color: var(--paper); }
+    .copy svg { width: 18px; height: 18px; }
+
+    /* 단추 */
+    .actions { display: grid; gap: 10px; padding: 18px 18px 22px; }
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; padding: 0 20px; border-radius: var(--r-md);
+      font: 700 17px/1 "Noto Sans KR", sans-serif; text-decoration: none; cursor: pointer; border: 0; transition: transform .08s, box-shadow .15s, background .15s;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn svg { width: 20px; height: 20px; flex: 0 0 auto; }
+    .primary { background: var(--ink); color: #FFF8EC; box-shadow: 0 10px 22px -12px rgba(42,37,34,.8), inset 0 -3px 0 rgba(0,0,0,.25); }
+    .primary:hover { background: #1F1B19; }
+    .secondary { background: transparent; color: var(--ink); border: 1.5px solid rgba(42,37,34,.35); }
+    .secondary:hover { border-color: var(--ink); background: rgba(42,37,34,.04); }
+    .btn small { font: 500 12px/1 "Noto Sans KR", sans-serif; color: inherit; opacity: .7; }
+    :focus-visible { outline: 3px solid rgba(184, 50, 42, .55); outline-offset: 3px; }
+
+    /* 앱이 없을 때 */
+    .steps { padding: 18px 20px 20px; }
+    .steps h2 { margin: 0 0 12px; font: 700 15px/1.3 "Noto Sans KR", sans-serif; }
+    .steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: s; }
+    .steps li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; color: var(--ink-2); font-size: 14.5px; line-height: 1.5; word-break: keep-all; counter-increment: s; }
+    .steps li::before {
+      content: counter(s); width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; margin-top: -1px;
+      background: rgba(184, 50, 42, .1); color: var(--seal); font: 700 13px/1 "Noto Sans KR", sans-serif;
+    }
+    .steps b { color: var(--ink); }
+
+    /* PC: 휴대폰으로 열기 QR */
+    .qr { display: none; text-align: center; padding: 26px 24px; }
+    .desk .qr { display: block; }
+    .qr h2 { margin: 0 0 6px; font: 900 20px/1.3 "Noto Sans KR", sans-serif; }
+    .qr p { margin: 0 0 18px; color: var(--ink-2); font-size: 15px; line-height: 1.55; word-break: keep-all; }
+    .qr .code { display: inline-block; padding: 14px; background: #fff; border-radius: 16px; border: 1px solid var(--line); }
+    .qr canvas, .qr img { display: block; width: 200px; height: 200px; image-rendering: pixelated; }
+
+    /* 코드가 없을 때 */
+    .empty .codebox, .empty #open { display: none; }
+
+    .foot { text-align: center; color: var(--muted); font-size: 12.5px; line-height: 1.7; }
+    .foot a { color: inherit; text-underline-offset: 3px; }
+    .toast {
+      position: fixed; left: 50%; bottom: max(24px, env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 999px; font: 700 14px/1 "Noto Sans KR", sans-serif;
+      transition: opacity .2s, transform .2s; box-shadow: 0 10px 24px -10px rgba(0,0,0,.5);
+    }
+    .toast.on { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 360px) { .tiles span { font-size: 22px; } h1 { font-size: 22px; } .codebox { margin-left: 14px; margin-right: 14px; } }
   </style>
 </head>
 <body>
-<!-- 명장면 링크 안내 페이지 (docs/CLIP_SOCIAL_DESIGN.md 3-2, K1 A안). 서버를 부르지 않는다: 코드만 보여 주고 앱 열기·스토어로 보낸다. -->
-<div class="c">
-  <span class="seal" id="seal">명장면</span>
-  <h1 id="title">알까기 명인 명장면 도전</h1>
-  <p id="lead">친구가 보낸 명장면이에요. 한 번에 따라 할 수 있을까요?</p>
-  <div class="code" id="code">------</div>
-  <span id="copied">복사했어요</span>
-  <a class="btn primary" id="open" href="#">앱에서 열기</a>
-  <button class="btn ghost" id="copy" type="button">코드 복사</button>
-  <a class="btn ghost" id="store" href="https://play.google.com/store/apps/details?id=com.msoon.alkkagi">앱 받기</a>
-  <p class="muted" id="howto">앱이 없으면 받은 뒤 타이틀의 명장면에서 코드 넣기를 눌러 이 코드를 넣으세요.</p>
+<div class="wrap">
+  <div>
+    <div class="brand" aria-label="알까기 명인"><span class="name" id="brand">알까기 명인</span><span class="seal" aria-hidden="true">명인</span></div>
+    <div style="height:14px"></div>
+    <main class="card" id="card">
+      <section class="hero">
+        <span class="tag" id="tag"><i></i><span>명장면 도전장</span></span>
+        <h1 id="title">친구가 명장면을 보냈어요</h1>
+        <p class="lead" id="lead">한 번에 똑같이 떨굴 수 있을까요?<br>앱에서 장면을 보고 바로 도전해 보세요.</p>
+        <!-- 판 그림: 내 알이 튕겨 나가 상대 알을 판 밖으로 -->
+        <svg class="board" viewBox="0 0 300 190" role="img" aria-label="바둑판 위에서 알을 튕기는 그림">
+          <defs>
+            <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9C07A"/><stop offset="1" stop-color="#D6A458"/></linearGradient>
+            <radialGradient id="bk" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#5A524C"/><stop offset=".55" stop-color="#1E1A18"/><stop offset="1" stop-color="#0E0C0B"/></radialGradient>
+            <radialGradient id="wh" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#F1EDE6"/><stop offset="1" stop-color="#D8D1C6"/></radialGradient>
+            <clipPath id="clip"><rect x="40" y="10" width="220" height="170" rx="8"/></clipPath>
+          </defs>
+          <rect x="40" y="14" width="220" height="170" rx="8" fill="#B88A44" opacity=".55"/>
+          <rect x="40" y="10" width="220" height="170" rx="8" fill="url(#wood)"/>
+          <g clip-path="url(#clip)" stroke="#5B3E1C" stroke-opacity=".45" stroke-width="1">
+            <path d="M62 10v170M84 10v170M106 10v170M128 10v170M150 10v170M172 10v170M194 10v170M216 10v170M238 10v170"/>
+            <path d="M40 30h220M40 52h220M40 74h220M40 96h220M40 118h220M40 140h220M40 162h220"/>
+          </g>
+          <path class="trail" d="M150 150 L144 52" stroke="#B8322A" stroke-width="2.2" stroke-linecap="round" fill="none" opacity=".75"/>
+          <g class="hit"><circle cx="144" cy="40" r="10" fill="url(#wh)" stroke="#9C9286" stroke-width=".8"/></g>
+          <circle cx="166" cy="40" r="10" fill="url(#wh)" stroke="#9C9286" stroke-width=".8"/>
+          <circle cx="122" cy="40" r="10" fill="url(#wh)" stroke="#9C9286" stroke-width=".8"/>
+          <circle cx="128" cy="150" r="10" fill="url(#bk)"/>
+          <circle cx="172" cy="150" r="10" fill="url(#bk)"/>
+          <g class="shot"><circle cx="150" cy="150" r="10" fill="url(#bk)"/><circle cx="150" cy="150" r="13" fill="none" stroke="#B8322A" stroke-width="1.5" opacity=".6"/></g>
+        </svg>
+      </section>
+
+      <section class="codebox" aria-labelledby="codelabel">
+        <div class="label" id="codelabel">도전 코드</div>
+        <div class="tiles" id="tiles" aria-live="polite"></div>
+        <button class="copy" id="copy" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          <span id="copytxt">코드 복사</span>
+        </button>
+      </section>
+
+      <div class="actions">
+        <a class="btn primary" id="open" href="#">
+          <span id="opentxt">앱에서 도전하기</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn secondary" id="store" href="https://play.google.com/store/apps/details?id=com.msoon.alkkagi">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2A2522" d="M4.2 2.6 13.6 12l-9.4 9.4c-.3-.2-.5-.6-.5-1V3.6c0-.4.2-.8.5-1Zm10.6 10.6 2.5 2.5-11 6.3 8.5-8.8Zm0-2.4L6.3 2l11 6.3-2.5 2.5Zm3.6-1.8 2.9 1.7c.8.5.8 1.6 0 2.1l-2.9 1.7-2.7-2.6 2.7-2.9Z"/></svg>
+          <span id="storetxt">Google Play에서 앱 받기</span>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <div>
+    <section class="card qr" id="qr" aria-labelledby="qrtitle">
+      <h2 id="qrtitle">휴대폰으로 열어 주세요</h2>
+      <p id="qrlead">알까기 명인은 안드로이드 앱이에요.<br>휴대폰 카메라로 비추면 이 도전장이 열려요.</p>
+      <div class="code" id="qrcode" aria-hidden="true"></div>
+    </section>
+    <div style="height:18px" class="qrgap"></div>
+    <section class="card steps" aria-labelledby="stepstitle">
+      <h2 id="stepstitle">앱이 아직 없다면</h2>
+      <ol id="steps">
+        <li><span><b>코드 복사</b>를 누르고 Google Play에서 앱을 받아요</span></li>
+        <li><span>앱 첫 화면 아래 <b>명장면</b>을 눌러요</span></li>
+        <li><span><b>코드 넣기</b>에 붙여 넣으면 장면이 열려요</span></li>
+      </ol>
+    </section>
+  </div>
+
+  <p class="foot" style="grid-column: 1 / -1">© MSOON SOFT · <a id="privacy" href="../privacy-policy-ko.html">개인정보처리방침</a></p>
 </div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js" defer></script>
 <script>
   (function () {
     var STORE = 'https://play.google.com/store/apps/details?id=com.msoon.alkkagi';
     var ABC = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+    var $ = function (id) { return document.getElementById(id); };
     var m = /[?&]k=([A-Za-z0-9]{6})/.exec(location.search);
     var code = m ? m[1].toUpperCase() : '';
     if (!ABC.test(code)) code = '';
+    var ua = navigator.userAgent || '';
+    var android = /Android/i.test(ua);
+    var mobile = android || /iPhone|iPad|iPod|Mobile/i.test(ua);
     var en = !/^ko/i.test(navigator.language || '');
-    var t = en ? {
-      seal: 'Highlight', title: 'Alkkagi Master Shot Challenge', lead: 'A friend sent you a highlight. Can you copy it in one try?',
-      open: 'Open in app', copy: 'Copy code', copied: 'Copied', store: 'Get the app',
-      howto: "No app yet? Install it, then tap Highlights on the title screen and Enter code."
-    } : null;
-    if (t) {
+
+    var T = en ? {
+      brand: 'Alkkagi Master', tag: 'Shot challenge', title: 'A friend sent you a highlight',
+      lead: 'Can you pull off the same shot in one try?<br>Watch it in the app and take the challenge.',
+      codelabel: 'CHALLENGE CODE', copy: 'Copy code', copied: 'Copied', copiedToast: 'Code copied',
+      open: 'Take the challenge in the app', store: 'Get it on Google Play',
+      stepstitle: "Don't have the app yet?",
+      steps: ['Tap <b>Copy code</b>, then get the app on Google Play', 'Tap <b>Highlights</b> at the bottom of the title screen', 'Paste it in <b>Enter code</b> to open the scene'],
+      qrtitle: 'Open on your phone', qrlead: 'Alkkagi Master is an Android app.<br>Scan with your phone camera to open this challenge.',
+      emptyTitle: 'This link has no code', emptyLead: 'Ask your friend to send the link again,<br>or get the app and play right away.',
+      privacy: 'Privacy Policy', privacyHref: '../privacy-policy-en.html', board: 'A stone flicked across a go board'
+    } : {
+      copied: '복사했어요', copiedToast: '코드를 복사했어요', emptyTitle: '링크에 코드가 없어요',
+      emptyLead: '친구에게 링크를 다시 받아 보세요.<br>앱을 받아 바로 시작할 수도 있어요.'
+    };
+    if (en) {
       document.documentElement.lang = 'en';
-      ['seal', 'title', 'lead', 'open', 'copy', 'copied', 'store', 'howto'].forEach(function (id) { document.getElementById(id).textContent = t[id]; });
+      document.title = 'Alkkagi Master · Shot challenge';
+      $('brand').textContent = T.brand;
+      $('tag').lastElementChild.textContent = T.tag;
+      $('title').textContent = T.title;
+      $('lead').innerHTML = T.lead;
+      $('codelabel').textContent = T.codelabel;
+      $('copytxt').textContent = T.copy;
+      $('opentxt').textContent = T.open;
+      $('storetxt').textContent = T.store;
+      $('stepstitle').textContent = T.stepstitle;
+      $('steps').innerHTML = T.steps.map(function (s) { return '<li><span>' + s + '</span></li>'; }).join('');
+      $('qrtitle').textContent = T.qrtitle;
+      $('qrlead').innerHTML = T.qrlead;
+      $('privacy').textContent = T.privacy;
+      $('privacy').href = T.privacyHref;
+      document.querySelector('.board').setAttribute('aria-label', T.board);
     }
-    document.getElementById('code').textContent = code || '------';
-    var open = document.getElementById('open');
-    if (!code) { open.style.display = 'none'; document.getElementById('copy').style.display = 'none'; return; }
-    // 안드로이드: intent 주소 (앱이 없으면 스토어로), 그 밖: 앱 주소
-    var android = /Android/i.test(navigator.userAgent);
-    open.href = android
-      ? 'intent://clip/' + code + '#Intent;scheme=alkkagi;package=com.msoon.alkkagi;S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end'
-      : 'alkkagi://clip/' + code;
-    if (!android) open.style.display = 'none';
-    document.getElementById('copy').addEventListener('click', function () {
-      var done = function () { document.getElementById('copied').style.visibility = 'visible'; };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, done);
-      else {
-        var r = document.createRange(); r.selectNodeContents(document.getElementById('code'));
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        try { document.execCommand('copy'); } catch (e) { /* 직접 길게 눌러 복사 */ }
-        done();
-      }
+
+    // 코드 칸
+    if (code) {
+      $('tiles').innerHTML = code.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
+      $('tiles').setAttribute('aria-label', code.split('').join(' '));
+    } else {
+      document.body.classList.add('empty');
+      $('title').textContent = T.emptyTitle;
+      $('lead').innerHTML = T.emptyLead;
+    }
+
+    // 앱에서 열기: 안드로이드는 intent (앱이 없으면 스토어로), 그 밖은 숨김
+    var open = $('open');
+    if (code && android) {
+      open.href = 'intent://clip/' + code + '#Intent;scheme=alkkagi;package=com.msoon.alkkagi;S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end';
+    } else {
+      open.style.display = 'none';
+    }
+
+    // 복사
+    var toastTimer = 0;
+    function toast(msg) {
+      var t = $('toast');
+      t.textContent = msg;
+      t.classList.add('on');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { t.classList.remove('on'); }, 1800);
+    }
+    function fallbackCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = code; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) { /* 직접 길게 눌러 복사 */ }
+      document.body.removeChild(ta);
+    }
+    $('copy').addEventListener('click', function () {
+      var done = function () {
+        $('copy').classList.add('done');
+        $('copytxt').textContent = en ? T.copied : '복사했어요';
+        toast(T.copiedToast);
+        setTimeout(function () { $('copy').classList.remove('done'); $('copytxt').textContent = en ? T.copy : '코드 복사'; }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, function () { fallbackCopy(); done(); });
+      else { fallbackCopy(); done(); }
     });
+
+    // PC: 휴대폰으로 넘기는 QR (불러오지 못하면 QR 칸만 숨김)
+    if (!mobile) {
+      document.body.classList.add('desk');
+      window.addEventListener('load', function () {
+        try {
+          if (typeof qrcode !== 'function') throw new Error('no qr');
+          var q = qrcode(0, 'M');
+          q.addData(location.href);
+          q.make();
+          $('qrcode').innerHTML = q.createImgTag(5, 0);
+        } catch (e) {
+          $('qr').style.display = 'none';
+          document.querySelector('.qrgap').style.display = 'none';
+        }
+      });
+    } else {
+      document.querySelector('.qrgap').style.display = 'none';
+    }
   })();
 </script>
 </body>
