@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>알까기 명인 · 명장면</title>
+  <meta property="og:title" content="알까기 명인 · 명장면 도전">
+  <meta property="og:description" content="친구가 보낸 명장면이에요. 한 번에 따라 할 수 있을까요?">
+  <style>
+    body { margin: 0; background: #F7F1E3; color: #2A2522; font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.7; }
+    .c { max-width: 480px; margin: 0 auto; padding: 48px 20px; text-align: center; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    p { margin: 6px 0; }
+    .code { font-size: 40px; letter-spacing: 8px; font-weight: 800; margin: 20px 0 6px; padding: 12px 0; border: 2px solid #2A2522; border-radius: 12px; background: #FFFBF2; }
+    .btn { display: block; margin: 14px auto 0; max-width: 320px; padding: 15px 0; border-radius: 12px; font-size: 18px; font-weight: 700; text-decoration: none; border: 2px solid #2A2522; cursor: pointer; }
+    .primary { background: #2A2522; color: #F7F1E3; }
+    .ghost { background: transparent; color: #2A2522; }
+    .muted { color: #7A6F66; font-size: 14px; margin-top: 18px; }
+    .seal { display: inline-block; color: #F7F1E3; background: #C0392B; border-radius: 6px; padding: 2px 8px; font-size: 13px; font-weight: 700; }
+    #copied { visibility: hidden; color: #C0392B; font-size: 14px; }
+  </style>
+</head>
+<body>
+<!-- 명장면 링크 안내 페이지 (docs/CLIP_SOCIAL_DESIGN.md 3-2, K1 A안). 서버를 부르지 않는다: 코드만 보여 주고 앱 열기·스토어로 보낸다. -->
+<div class="c">
+  <span class="seal" id="seal">명장면</span>
+  <h1 id="title">알까기 명인 명장면 도전</h1>
+  <p id="lead">친구가 보낸 명장면이에요. 한 번에 따라 할 수 있을까요?</p>
+  <div class="code" id="code">------</div>
+  <span id="copied">복사했어요</span>
+  <a class="btn primary" id="open" href="#">앱에서 열기</a>
+  <button class="btn ghost" id="copy" type="button">코드 복사</button>
+  <a class="btn ghost" id="store" href="https://play.google.com/store/apps/details?id=com.msoon.alkkagi">앱 받기</a>
+  <p class="muted" id="howto">앱이 없으면 받은 뒤 타이틀의 명장면에서 코드 넣기를 눌러 이 코드를 넣으세요.</p>
+</div>
+<script>
+  (function () {
+    var STORE = 'https://play.google.com/store/apps/details?id=com.msoon.alkkagi';
+    var ABC = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+    var m = /[?&]k=([A-Za-z0-9]{6})/.exec(location.search);
+    var code = m ? m[1].toUpperCase() : '';
+    if (!ABC.test(code)) code = '';
+    var en = !/^ko/i.test(navigator.language || '');
+    var t = en ? {
+      seal: 'Highlight', title: 'Alkkagi Master Shot Challenge', lead: 'A friend sent you a highlight. Can you copy it in one try?',
+      open: 'Open in app', copy: 'Copy code', copied: 'Copied', store: 'Get the app',
+      howto: "No app yet? Install it, then tap Highlights on the title screen and Enter code."
+    } : null;
+    if (t) {
+      document.documentElement.lang = 'en';
+      ['seal', 'title', 'lead', 'open', 'copy', 'copied', 'store', 'howto'].forEach(function (id) { document.getElementById(id).textContent = t[id]; });
+    }
+    document.getElementById('code').textContent = code || '------';
+    var open = document.getElementById('open');
+    if (!code) { open.style.display = 'none'; document.getElementById('copy').style.display = 'none'; return; }
+    // 안드로이드: intent 주소 (앱이 없으면 스토어로), 그 밖: 앱 주소
+    var android = /Android/i.test(navigator.userAgent);
+    open.href = android
+      ? 'intent://clip/' + code + '#Intent;scheme=alkkagi;package=com.msoon.alkkagi;S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end'
+      : 'alkkagi://clip/' + code;
+    if (!android) open.style.display = 'none';
+    document.getElementById('copy').addEventListener('click', function () {
+      var done = function () { document.getElementById('copied').style.visibility = 'visible'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, done);
+      else {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById('code'));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); } catch (e) { /* 직접 길게 눌러 복사 */ }
+        done();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
